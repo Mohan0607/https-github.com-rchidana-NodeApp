@@ -10,7 +10,7 @@ node {
     stage('Build image') {
         /* This builds the actual image */
 
-        app = docker.build("balajikendey/jenkins:latest")
+        app = docker.build("mohan0607/nodejenkins")
     }
 
     stage('Test image') {
@@ -21,7 +21,7 @@ node {
     }
 
 	stage('Push image') {
-	docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+	docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
             } 
